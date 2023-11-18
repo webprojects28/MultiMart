@@ -4,7 +4,7 @@ import img1 from "../images/electronics-banner-1.jpg";
 import img2 from "../images/mens-banner.jpg";
 import img3 from "../images/womens-banner.jpg";
 import img4 from "../images/electronics-banner-2.jpg"
-import { Outlet, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useState ,useEffect } from 'react';
 import Cart from './Cart';
 import axios from 'axios';
@@ -12,7 +12,7 @@ function Nav({setopenCart,openCart,setRefreshPage,refreshPage}) {
 
 
   useEffect(() => {
-    axios.get("http://localhost:8000/product").then((response) => {
+    axios.get("https://multi-mart.onrender.com/product").then((response) => {
       setprodlen(response.data.length);
   });
   }, []);

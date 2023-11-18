@@ -2,7 +2,6 @@ import React from 'react'
 import { useParams } from "react-router-dom"
 import { useState ,useEffect } from 'react';
 import axios from 'axios';
-import Nav from './Nav';
 import './Nav.css';
 import "./Product.css"
 import { grocery } from './grocery';
@@ -21,7 +20,7 @@ function NewProduct({setopenCart}) {
     // Fetch data from the API using Axios in the useEffect hook
     axios.get(baseURL) // Replace with the API endpoint
       .then((response) => {
-        if(category=='grocery')
+        if(category==='grocery')
         {
           setData(grocery.grocery);
         }
@@ -32,24 +31,24 @@ function NewProduct({setopenCart}) {
       .catch((error) => {
         console.error('Error fetching data:', error);
       });
-  }, []); // The empty dependency array ensures the effect runs once after component mount
+  }, [baseURL, category]); // The empty dependency array ensures the effect runs once after component mount
 
 
 
    
   useEffect(() => {
     // Filter the data based on the ID and update the filteredData state
-    const filtered = data.filter(item => item.id == idToFilter);
+    const filtered = data.filter(item => item.id === idToFilter);
     setFilteredData(filtered);         
     console.log(filtered," is the filtered data" , filteredData);     
-  }, [data, idToFilter]);
+  }, [data, idToFilter, filteredData]);
   
   const addToCartHandler= async()=>
   {
       setopenCart(true);
      
       axios
-      .post("http://localhost:8000/product", {
+      .post("https://multi-mart.onrender.com/product", {
         "name":filteredData[0].title,
         "description":filteredData[0].description,
         "image":filteredData[0].image,
@@ -58,10 +57,10 @@ function NewProduct({setopenCart}) {
       })
       .then(async (response) => {
         console.log(response.data.id,"heyyyyy ");
-        if(response.data.message=='already exists')
+        if(response.data.message==='already exists')
         {
           console.log("i am updating it ")
-          await axios.patch(`http://localhost:8000/product/${response.data.id}`, {quantity: response.data.quantity+1});
+          await axios.patch(`https://multi-mart.onrender.com/product/${response.data.id}`, {quantity: response.data.quantity+1});
         }
         else{
           console.log(response.data);
@@ -71,8 +70,6 @@ function NewProduct({setopenCart}) {
      
   }
   
-
-
   return (
     <div>
     <div className="product-detail-container">
@@ -81,6 +78,7 @@ function NewProduct({setopenCart}) {
           <img
             src={filteredData[0]?.image}
             className="product-detail-image"
+            alt='Product Images'
           />
         </div>
 

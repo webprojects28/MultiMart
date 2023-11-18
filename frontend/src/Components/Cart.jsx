@@ -3,22 +3,22 @@ import "./Cart.css";
 import "./Nav.css"
 import { useEffect,useState } from "react";
 import axios from "axios"
-import { Outlet, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 const Cart = ({openCart,setprodlen,setopenCart}) => {
   const [products,setProducts]=useState([])
   
   useEffect(() => {
-        axios.get("http://localhost:8000/product").then((response) => {
+        axios.get("https://multi-mart.onrender.com/product").then((response) => {
           setProducts(response.data);
           console.log(response.data , "i am in the cart")
       });
       setprodlen(products.length)
      
-  }, [products,openCart]);
+  }, [products,openCart,setprodlen]);
 
 
   const deletehandler=(item)=>{
-      axios.delete(`http://localhost:8000/product/${item._id}`)
+      axios.delete(`https://multi-mart.onrender.com/product/${item._id}`)
       .then((response) => {
          // Store the fetched data in the state
         console.log(response.data,"  we are deleting it ")
@@ -39,16 +39,16 @@ const Cart = ({openCart,setprodlen,setopenCart}) => {
     return total.toFixed(2);
   };
   const resethandler=()=>{
-    axios.delete(`http://localhost:8000/product/`)
+    axios.delete(`https://multi-mart.onrender.com/product/`)
     setProducts([])
   }
   const plusHandler=(id,quantity)=>{
-    axios.patch(`http://localhost:8000/product/${id}`, {quantity: quantity+1});
+    axios.patch(`https://multi-mart.onrender.com/product/${id}`, {quantity: quantity+1});
   }
   const minusHandler=(id,quantity)=>{
     if(quantity>1)
     {
-      axios.patch(`http://localhost:8000/product/${id}`, {quantity: quantity-1});
+      axios.patch(`https://multi-mart.onrender.com/product/${id}`, {quantity: quantity-1});
     }
    
   }

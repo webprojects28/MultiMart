@@ -1,6 +1,6 @@
 import React from 'react'
 import './Nav.css';
-import { Outlet, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useState ,useEffect } from 'react';
 import axios from 'axios';
 import { useParams } from "react-router-dom"
@@ -13,11 +13,11 @@ function CategoryPage({refreshPage}) {
   var baseURL;
   console.log("hey i am in the category page ", category , " and the data is ",grocery)
  console.log(category)
-  if(category=='beauty products')
+  if(category==='beauty products')
   {
     baseURL="http://makeup-api.herokuapp.com/api/v1/products.json?brand=maybelline"
   }
-  else if(category=='grocery')
+  else if(category === 'grocery')
   {
     baseURL="http://makeup-api.herokuapp.com/api/v1/products.json?brand=maybelline"
   }
@@ -29,14 +29,14 @@ function CategoryPage({refreshPage}) {
     console.log("hey i am runnning with nike shoes on")
        axios.get(baseURL).then((response) => {
 
-          if(category=='grocery')
+          if(category==='grocery')
           {
             setprod(grocery.grocery);
           }
           else  setprod(response.data);
           console.log(response.data)
       });
-    }, [refreshPage]);
+    }, [refreshPage,baseURL,category]);
 
   return (
     <div className="CatergorypageContainer">
@@ -49,7 +49,7 @@ function CategoryPage({refreshPage}) {
 
     <div className="product-grid">
 
-     {category == 'beauty products' ?  
+     {category === 'beauty products' ?  
      
      
      

@@ -1,15 +1,9 @@
 import React from 'react'
 import './Nav.css';
-import { Outlet, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./Sidebar.css"
 import { useState ,useEffect } from 'react';
 import axios from 'axios';
-
-import img1 from "../images/products/1.jpg";
-import img2 from "../images/products/2.jpg"
-import img3 from "../images/products/3.jpg";
-import img4 from "../images/products/4.jpg";
-
 
 function Sidebar() {
   const [prod,setprod] =useState();
@@ -20,7 +14,7 @@ function Sidebar() {
        setprod(response.data);
        console.log(response.data)
    });
- }, []);
+ }, [baseURL]);
 
   return (
     <div className="sidebar  has-scrollbar" data-mobile-menu>

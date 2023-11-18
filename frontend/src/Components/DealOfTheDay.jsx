@@ -1,6 +1,6 @@
 import React from 'react'
 import './Nav.css';
-import { Outlet, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import { useState ,useEffect } from 'react';
 import axios from 'axios';
@@ -16,7 +16,7 @@ function DealOfTheDay() {
        setprod(response.data);
        console.log(response.data)
    });
-  }, []);
+  }, [baseURL]);
 
 
   return (

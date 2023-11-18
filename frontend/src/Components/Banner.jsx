@@ -2,7 +2,7 @@ import React from 'react'
 import "./Nav.css"
 import banner from "../images/banner-3.jpg";
 
-import { Outlet, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 function Banner() {
   return (
   <div className="banner">

@@ -4,10 +4,7 @@ import img2 from "../images/icons/coat.svg"
 import img3 from "../images/icons/glasses.svg"
 import img4 from "../images/icons/shorts.svg"
 import img5 from "../images/icons/tee.svg"
-import img6 from "../images/icons/jacket.svg"
-import img7 from "../images/icons/watch.svg"
-import img8 from "../images/icons/hat.svg"
-import { Outlet, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./Nav.css"
 function Category() {
   return (

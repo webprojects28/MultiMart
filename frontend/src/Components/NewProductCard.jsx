@@ -1,6 +1,6 @@
 import React from 'react'
 import './Nav.css';
-import { Outlet, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./NewProductCard.css"
 
 function NewProductCard({img1,img2,salepercent,brand,name,price,id}) {
@@ -14,9 +14,9 @@ function NewProductCard({img1,img2,salepercent,brand,name,price,id}) {
 
           <img  src={img1} alt={name} className="product-img default"/>
           <img src={img2} alt={name}  className="product-img hover"/>
-          {x==1 && <p className="showcase-badge angle pink">new</p>}
-          {x==2 && <p className="showcase-badge">{salepercent}%</p>}
-          {x==3 && <p className="showcase-badge angle black">sale</p>}
+          {x===1 && <p className="showcase-badge angle pink">new</p>}
+          {x===2 && <p className="showcase-badge">{salepercent}%</p>}
+          {x===3 && <p className="showcase-badge angle black">sale</p>}
           <div className="showcase-actions">
 
             <button className="btn-action">

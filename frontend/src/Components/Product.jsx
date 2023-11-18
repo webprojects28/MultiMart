@@ -2,14 +2,11 @@ import React from 'react'
 import { useParams } from "react-router-dom"
 import { useState ,useEffect } from 'react';
 import axios from 'axios';
-import Nav from './Nav';
 import './Nav.css';
 import "./Product.css"
 function Product({setopenCart}) {
   const brand = useParams().brand;
   const id = useParams().id;
-
-  
  
   const baseURL=`http://makeup-api.herokuapp.com/api/v1/products.json?brand=${brand}`
   const [data, setData] = useState([]);
@@ -26,24 +23,24 @@ function Product({setopenCart}) {
       .catch((error) => {
         console.error('Error fetching data:', error);
       });
-  }, []); // The empty dependency array ensures the effect runs once after component mount
+  }, [baseURL]); // The empty dependency array ensures the effect runs once after component mount
 
 
 
    
   useEffect(() => {
     // Filter the data based on the ID and update the filteredData state
-    const filtered = data.filter(item => item.id == idToFilter);
+    const filtered = data.filter(item => item.id === idToFilter);
     setFilteredData(filtered);         
     console.log(filtered," is the filtered data" , filteredData);     
-  }, [data, idToFilter]);
+  }, [data, idToFilter, filteredData]);
   
   const addToCartHandler= async()=>
   {
       setopenCart(true);
      
       axios
-      .post("http://localhost:8000/product", {
+      .post("https://multi-mart.onrender.com/product", {
         "name":filteredData[0].name,
         "description":filteredData[0].description,
         "image":filteredData[0].api_featured_image,
@@ -52,10 +49,10 @@ function Product({setopenCart}) {
       })
       .then(async (response) => {
         console.log(response.data.id,"heyyyyy ");
-        if(response.data.message=='already exists')
+        if(response.data.message==='already exists')
         {
           console.log("i am updating it ")
-          await axios.patch(`http://localhost:8000/product/${response.data.id}`, {quantity: response.data.quantity+1});
+          await axios.patch(`https://multi-mart.onrender.com/product/${response.data.id}`, {quantity: response.data.quantity+1});
         }
         else{
           console.log(response.data);
@@ -75,6 +72,7 @@ function Product({setopenCart}) {
           <img
             src={filteredData[0]?.api_featured_image}
             className="product-detail-image"
+            alt='Product Images'
           />
         </div>
 

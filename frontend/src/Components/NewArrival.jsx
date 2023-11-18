@@ -1,15 +1,6 @@
 import React from 'react'
 import './Nav.css';
-import { Outlet, Link } from "react-router-dom";
-import img5 from "../images/products/clothes-1.jpg"
-import img6 from "../images/products/clothes-2.jpg"
-import img7 from "../images/products/clothes-3.jpg"
-import img8 from "../images/products/shirt-1.jpg"
-import img9 from "../images/products/jacket-5.jpg";
-import img10 from "../images/products/jacket-1.jpg";
-import img11 from "../images/products/jacket-3.jpg"
-import img12 from "../images/products/shorts-1.jpg"
-
+import {  Link } from "react-router-dom";
 import { useState ,useEffect } from 'react';
 import axios from 'axios';
 
@@ -23,7 +14,7 @@ function NewArrival() {
        setprod(response.data);
        console.log(response.data)
    });
- }, []);
+ }, [baseURL]);
 
   return (
     <div className="product-showcase">

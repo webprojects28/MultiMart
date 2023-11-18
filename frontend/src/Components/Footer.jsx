@@ -2,7 +2,7 @@ import React from 'react'
 import img1 from "../images/payment.png"
 import "./Nav.css"
 
-import { Outlet, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 function footer() {
   return (
     <div>
